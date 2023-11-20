@@ -3,6 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ExampleController;
 use App\Http\Controllers\AddcarController;
+use App\Http\Controllers\CarController;
+use App\Http\Controllers\NewController;
+use App\Models\News;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -80,18 +84,23 @@ Route::get('/', function () {
         Route::get('test1', [ExampleController::class,
 'test1']);
 
-Route::get('addcar', function () {
-    return view('addcar');
-});
-Route::post('receive1', function () {
-    return ('DATA receive');
-})->name('receive1');
+// Route::get('addcar', function () {
+//     return view('addcar');
+//  });
+// Route::post('receive1', function () {
+//     return ('DATA receive');
+// })->name('receive1');
 
 
-Route::get('/post/create', [AddcarController::class,
-'create']);
-Route::post('/post/create', [AddcarController::class,
-'store']);
+// Route::get('/post/create', [AddcarController::class,
+// 'create']);
+// Route::post('/post/create', [AddcarController::class,
+// 'store']);
+Route::get('addcar', [NewController::class,
+'index']);
+Route::post('addcar', [NewController::class,
+'store'])->name('news');
 
 
-
+// Route::post('car', [AddcarController::class,
+// 'car']);

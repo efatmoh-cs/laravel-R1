@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class AddcarController extends Controller
@@ -10,9 +11,12 @@ class AddcarController extends Controller
         return view('addcar');
         }
         public function store(Request $request){
-            echo "<pre>";
-            print_r($request->all());
-
+           Post:: create([
+            'title' =>$request->title,
+            'price' =>$request->price,
+           // 'desciption'=>$request->description,
+           ]);
+return back();
             }
 
 }
