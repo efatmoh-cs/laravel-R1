@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Add Car</title>
+  <title>Update Car</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -11,23 +11,25 @@
 <body>
 
 <div class="container">
-  <h2>Add Car</h2>
-  <form action="{{ route('addcar') }}" method="post">
+  <h2>Update Car</h2>
+  <form action= "{{ route('updatecar', $cars->id)}}"  method="post">
     @csrf
+    @method('put')
     <div class="form-group">
       <label for="title">Title:</label>
-      <input type="text" class="form-control" id="title" placeholder="Enter title" name="title">
+      <input type="text" class="form-control" id="title" placeholder="Enter title" name="title" value="{{$cars->cartitle}}">
     </div>
     <div class="form-group">
       <label for="description">Password:</label>
-      <input type="text" class="form-control" id="description" placeholder="Enter description" name="description">
+      <input type="text" class="form-control" id="description" placeholder="Enter description" name="description" value="{{$cars->desciption}}">
     </div>
     <div class="checkbox">
-      <label><input type="checkbox" name="published"> Published</label>
+      <label><input type="checkbox" name="published" @checked($cars->published)> Published</label>
     </div>
-    <button type="submit" class="btn btn-default">Add</button>
+    <button type="submit" class="btn btn-default">update</button>
   </form>
 </div>
 
 </body>
 </html>
+

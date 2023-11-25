@@ -12,7 +12,8 @@ class NewController extends Controller
      */
     public function index()
     {
-        return view("addcar");
+        $news = News::get();
+        return view('editnew', compact('news'));
     }
 
     /**
@@ -20,7 +21,7 @@ class NewController extends Controller
      */
     public function create()
     {
-        //
+        return view("news");
     }
 
     /**
@@ -57,7 +58,11 @@ if(isset($request->published)){
      */
     public function edit(string $id)
     {
-        //
+       // $cars = News::findOrFail($id);
+
+        // return "the new".$id;
+        $news = News::findOrFail($id);
+return view('updatenew', compact('news'));
     }
 
     /**

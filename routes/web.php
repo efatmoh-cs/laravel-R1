@@ -5,6 +5,8 @@ use App\Http\Controllers\ExampleController;
 use App\Http\Controllers\AddcarController;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\NewController;
+use App\Http\Controllers\PostsController;
+use App\Models\Car;
 use App\Models\News;
 
 /*
@@ -96,10 +98,24 @@ Route::get('/', function () {
 // 'create']);
 // Route::post('/post/create', [AddcarController::class,
 // 'store']);
-Route::get('addcar', [NewController::class,
-'index']);
-Route::post('addcar', [NewController::class,
+Route::get('news', [NewController::class,
+'create']);
+Route::post('news', [NewController::class,
 'store'])->name('news');
+Route::get('editnew', [NewController::class, 'index']);
+Route::get('editnew/{id}', [NewController::class,
+'edit']);
+Route::put('updatenew/{id}', [CarController::class,
+'update'])->name('updatenew');
+Route::get('addcar', [CarController::class,
+'create']);
+Route::post('addcar', [CarController::class,
+'store'])->name('addcar');
+Route::get('cars', [CarController::class, 'index']);
+Route::get('editcar/{id}', [CarController::class,
+'edit']);
+Route::put('updatecar/{id}', [CarController::class,
+'update'])->name('updatecar');
 
 
 // Route::post('car', [AddcarController::class,
