@@ -17,8 +17,11 @@
     <thead>
       <tr>
         <th>Title</th>
+        <th>auth</th>
         <th>Content</th>
         <th>Published</th>
+        <th>Edit</th>
+        <th>show</th>
       </tr>
     </thead>
     <tbody>
@@ -27,14 +30,16 @@
         <td>{{ $new->title}}</td>
         <td>{{ $new->auth }}</td>
         <td>{{ $new->description }}</td>
-        <td>@if ( $new->published===1)
- yes ✔
- @else
- NO 🎁
- @endif
-</td>
+        <td>
+            @if($new->published)
+                Yes
+            @else
+                No
+            @endif
+        </td>
 
 <td><a href="editnew/{{ $new->id }}">Edit</a></td>
+<td><a href="shownew/{{ $new->id }}">show</a></td>
 </tr>
       </tr>
 @endforeach

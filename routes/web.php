@@ -105,7 +105,8 @@ Route::post('news', [NewController::class,
 Route::get('editnew', [NewController::class, 'index']);
 Route::get('editnew/{id}', [NewController::class,
 'edit']);
-Route::put('updatenew/{id}', [CarController::class,
+Route::get('shownew/{id}', [NewController::class,'show'])->name('shownew');
+Route::put('updatenew/{id}', [NewController::class,
 'update'])->name('updatenew');
 Route::get('addcar', [CarController::class,
 'create']);
@@ -114,6 +115,8 @@ Route::post('addcar', [CarController::class,
 Route::get('cars', [CarController::class, 'index']);
 Route::get('editcar/{id}', [CarController::class,
 'edit']);
+Route::get('deletecar/{id}', [CarController::class,'destroy']);
+Route::get('showcar/{id}', [CarController::class,'show'])->name('showcar');
 Route::put('updatecar/{id}', [CarController::class,
 'update'])->name('updatecar');
 

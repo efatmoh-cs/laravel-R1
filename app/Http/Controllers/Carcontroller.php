@@ -7,9 +7,8 @@ use App\Models\Car;
 
 class Carcontroller extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    private $columns=['cartitle','desciption'] ;
+
     public function index()
     {
         $cars = Car::get();
@@ -30,18 +29,19 @@ class Carcontroller extends Controller
     public function store(Request $request)
     {
        $cars = new Car();
-       $cars->cartitle = $request->title;
+       $cars->cartitle = $request->cartitle;
       // $cars->price = $request->price;
-       $cars->desciption = $request->description;
-       $cars->published = true;
-       $cars->save();
-// if(isset($request->published)){
-//     $cars->published=true;
-// }else{
-//     $cars->published=false;
-// }
+       $cars->desciption = $request->desciption;
 
+      // $cars->published = true;
 
+if(isset($request->published)){
+    $cars->published=true;
+}else{
+    $cars->published=false;
+}
+
+$cars->save();
         return 'Added Successfully';
         }
 
@@ -52,7 +52,8 @@ class Carcontroller extends Controller
      */
     public function show(string $id)
     {
-        //
+        $cars = car::findOrFail($id);
+      return view('show', compact('cars'));
     }
 
     /**
@@ -70,7 +71,8 @@ class Carcontroller extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        car::where('id', $id)->update($request->only($this->columns));
+return ('update');
     }
 
     /**
@@ -78,6 +80,9 @@ class Carcontroller extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        //$cars = car::findOrFail($id);
+        //return view('deletecar');
+        car::where('id', $id)->delete();
+        return 'Delete page';
     }
 }

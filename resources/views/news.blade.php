@@ -26,7 +26,7 @@
 
     <div class="form-group">
         <label for="description">Description:</label>
-        <textarea class="form-control" rows="5" id="description" name="content"></textarea>
+        <textarea class="form-control" rows="5" id="description" name="description"></textarea>
       </div>
     <div class="checkbox">
       <label><input type="checkbox" name="remember"> Published</label>

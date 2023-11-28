@@ -18,7 +18,12 @@
       <tr>
         <th>Title</th>
         <th>Content</th>
+
         <th>Published</th>
+        <th>Edeit</th>
+        <th>delete</th>
+        <th>show</th>
+
       </tr>
     </thead>
     <tbody>
@@ -27,14 +32,17 @@
         <td>{{ $car->cartitle }}</td>
         <td>{{ $car->desciption }}</td>
 
-        <td>@if ( $car->published===1)
- yes ✔
- @else
- NO 🎁
- @endif
-</td>
+        <td>
+            @if($car->published)
+                Yes
+            @else
+                No
+            @endif
+        </td>
 
             <td><a href="editcar/{{ $car->id }}">Edit</a></td>
+            <td><a href="deletecar/{{ $car->id }}">delete</a></td>
+            <td><a href="showcar/{{ $car->id }}">show</a></td>
       </tr>
 @endforeach
     </tbody>

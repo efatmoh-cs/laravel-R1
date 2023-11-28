@@ -7,6 +7,7 @@ use App\Models\News;
 
 class NewController extends Controller
 {
+    private $columns=['title','description','auth'] ;
     /**
      * Display a listing of the resource.
      */
@@ -32,16 +33,16 @@ class NewController extends Controller
         $news = new News();
       $news->title = $request->title;
       $news->auth = $request->auth;
-      $news->description = $request->content;
+      $news->description = $request->description;
      // $news->published = true;
-      $news->save();
+
 if(isset($request->published)){
     $news->published=true;
 }else{
     $news->published=false;
 }
 
-
+$news->save();
        return 'Added Successfully';
     }
 
@@ -50,7 +51,8 @@ if(isset($request->published)){
      */
     public function show(string $id)
     {
-        //
+        $news = News::findOrFail($id);
+        return view('shownew', compact('news'));
     }
 
     /**

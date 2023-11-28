@@ -17,11 +17,11 @@
     @method('put')
     <div class="form-group">
       <label for="title">Title:</label>
-      <input type="text" class="form-control" id="title" placeholder="Enter title" name="title" value="{{$cars->cartitle}}">
+      <input type="text" class="form-control" id="title" placeholder="Enter title" name="cartitle" value="{{$cars->cartitle}}">
     </div>
     <div class="form-group">
       <label for="description">Password:</label>
-      <input type="text" class="form-control" id="description" placeholder="Enter description" name="description" value="{{$cars->desciption}}">
+      <input type="text" class="form-control" id="description" placeholder="Enter description" name="desciption" value="{{$cars->desciption}}">
     </div>
     <div class="checkbox">
       <label><input type="checkbox" name="published" @checked($cars->published)> Published</label>
