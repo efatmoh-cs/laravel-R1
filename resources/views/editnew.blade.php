@@ -22,6 +22,8 @@
         <th>Published</th>
         <th>Edit</th>
         <th>show</th>
+        <th>Delete</th>
+
       </tr>
     </thead>
     <tbody>
@@ -40,6 +42,7 @@
 
 <td><a href="editnew/{{ $new->id }}">Edit</a></td>
 <td><a href="shownew/{{ $new->id }}">show</a></td>
+<td><a href="soft_delete/{{ $new->id }}">delete</a></td>
 </tr>
       </tr>
 @endforeach

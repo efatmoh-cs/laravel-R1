@@ -12,7 +12,7 @@
 {{-- value from db --}}
 <div class="container">
   <h2>UpdateNews</h2>
-  <form action="{{ route('news', $news->id) }}" method="post">
+  <form action="{{ route('updatenew', $news->id) }}" method="post">
     @csrf
     @method('put')
     <div class="form-group">

@@ -5,9 +5,10 @@ use App\Http\Controllers\ExampleController;
 use App\Http\Controllers\AddcarController;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\NewController;
-use App\Http\Controllers\PostsController;
+use App\Http\Controllers\ProductController;
 use App\Models\Car;
 use App\Models\News;
+use App\Models\Product;
 
 /*
 |--------------------------------------------------------------------------
@@ -105,6 +106,11 @@ Route::post('news', [NewController::class,
 Route::get('editnew', [NewController::class, 'index']);
 Route::get('editnew/{id}', [NewController::class,
 'edit']);
+Route::get('soft_delete/{id}', [NewController::class,'destroy']);
+Route::get('trashed', [NewController::class,'trashed']);
+Route::get('force-delete/{id}', [NewController::class,'delete']);
+Route::get('restorenew/{id}', [NewController::class,'restore']);
+
 Route::get('shownew/{id}', [NewController::class,'show'])->name('shownew');
 Route::put('updatenew/{id}', [NewController::class,
 'update'])->name('updatenew');
@@ -119,7 +125,10 @@ Route::get('deletecar/{id}', [CarController::class,'destroy']);
 Route::get('showcar/{id}', [CarController::class,'show'])->name('showcar');
 Route::put('updatecar/{id}', [CarController::class,
 'update'])->name('updatecar');
-
+Route::get('addproduct', [ProductController::class,
+'create']);
+Route::post('addproduct', [ProductController::class,
+'store'])->name('addproduct');
 
 // Route::post('car', [AddcarController::class,
 // 'car']);
