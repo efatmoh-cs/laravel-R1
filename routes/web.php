@@ -86,6 +86,10 @@ Route::get('/', function () {
 
         Route::get('test1', [ExampleController::class,
 'test1']);
+Route::get('showUpload', [ExampleController::class,
+'showUpload']);
+Route::post('upload',[ExampleController::class, 'upload'])->name('upload');
+
 
 // Route::get('addcar', function () {
 //     return view('addcar');
@@ -116,8 +120,10 @@ Route::put('updatenew/{id}', [NewController::class,
 'update'])->name('updatenew');
 Route::get('addcar', [CarController::class,
 'create']);
-Route::post('addcar', [CarController::class,
-'store'])->name('addcar');
+
+
+Route::post('storecar', [CarController::class,
+'store'])->name('storecar');
 Route::get('cars', [CarController::class, 'index']);
 Route::get('editcar/{id}', [CarController::class,
 'edit']);
@@ -125,6 +131,12 @@ Route::get('deletecar/{id}', [CarController::class,'destroy']);
 Route::get('showcar/{id}', [CarController::class,'show'])->name('showcar');
 Route::put('updatecar/{id}', [CarController::class,
 'update'])->name('updatecar');
+Route::get('trashedcar', [CarController::class,'trashedcar']);
+Route::get('force-delete/{id}', [CarController::class,'delete']);
+Route::get('restorecar/{id}', [CarController::class,'restore']);
+
+
+
 Route::get('addproduct', [ProductController::class,
 'create']);
 Route::post('addproduct', [ProductController::class,

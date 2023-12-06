@@ -17,7 +17,7 @@
 
     <div class="form-group">
       <label for="title">Title:</label>
-      <input type="number" class="form-control" id="price" placeholder="Enter Price" name="title" value="{{ old('title') }}">
+      <input type="text" class="form-control" id="title" placeholder="Enter title" name="title">
       @error('title')
 {{ $message }}
 @enderror
