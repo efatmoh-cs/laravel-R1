@@ -11,6 +11,12 @@ class ExampleController extends Controller
     public function test1(){
         return view('login');
         }
+        public function place(){
+            return view('place');
+        }
+        public function showplace(){
+            return view('showplace');
+        }
         public function showUpload(){
             return view('upload');
         }

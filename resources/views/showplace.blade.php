@@ -12,31 +12,36 @@
 
 <div class="container">
     <h2>Add Place</h2>
-    <form action="{{route('storecar')}}" method="post" enctype="multipart/form-data">
+    <form action="{{route('showplace')}}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
             <label for="title">Title:</label>
-            <input type="text" class="form-control" id="title" placeholder="Enter title" name="cartitle" value="{{ old('cartitle') }}">
-            @error('cartitle')
+            <input type="text" class="form-control" id="title" placeholder="Enter title" name="title" value="{{ old('title') }}">
+            @error('title')
             <div class="alert alert-warning">
                 {{ $message }}
             </div>
             @enderror
         </div>
         <div class="form-group">
-            <label for="price">Price:</label>
-            <input type="number" class="form-control" id="price" placeholder="Enter Price" name="price" value="{{ old('price') }}">
+            <label for="price">from:</label>
+            <input type="number" class="form-control" id="price" placeholder="Enter Price" name="from" value="{{ old('from') }}">
+        </div>
+        <div class="form-group">
+            <label for="price">to:</label>
+            <input type="number" class="form-control" id="price" placeholder="Enter Price" name="from1" value="{{ old('from1') }}">
         </div>
         <div class="form-group">
             <label for="description">Description:</label>
-            <textarea class="form-control" rows="5" id="description" name="desciption">{{ old('desciption') }}</textarea>
-            @error('desciption')
+            <textarea class="form-control" rows="5" id="description" name="description">{{ old('description') }}</textarea>
+            @error('description')
                 {{ $message }}
             @enderror
         </div>
         <div class="form-group">
             <label for="image">Image:</label>
             <input type="file" class="form-control" id="image" name="image" value="{{ old('image') }}">
+
             @error('image')
                 {{ $message }}
             @enderror

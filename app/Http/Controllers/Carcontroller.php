@@ -68,15 +68,13 @@ class Carcontroller extends Controller
 
     //    car ::create($data);
     //     return 'done';
-    $messages=[
-        'cartitle.required'=>'Title is required',
-        'desciption.required'=> 'should be text',
-    ];
+    $messages= $this->messages();
+
 
     $data = $request->validate([
         'cartitle'=>'required|string',
         'desciption'=>'required|string',
-        'image' => 'required|mimes:png,jpg,jpeg|max:2048',
+        'image' =>'required|mimes:png,jpg,jpeg|max:2048',
     ], $messages);
 
     $fileName = $this->uploadFile($request->image, 'assets/images');
@@ -131,21 +129,37 @@ class Carcontroller extends Controller
 
 
 
-     public function update(Request $request, string $id): RedirectResponse
-   {
 
-    $cars=car::where('id', $id)->update($request->only($this->columns));
+
+
+    public function update(Request $request, string $id)
+    {
+
+        // $data = $request->only($this->columns);
+        // $data['published'] = isset($data['published'])? true:false;
+
+        // Car::where('id', $id)->update($data);
+        $messages= $this->messages();
+
+        $data = $request->validate([
+            'cartitle'=>'required|string',
+            'desciption'=>'required|string',
+            'image' => 'sometimes|mimes:png,jpg,jpeg|max:2048',
+        ], $messages);
+
+        $data['published'] = isset($request->published);
+
+        // update image if new file selected
         if($request->hasFile('image')){
-       // $destination='assets/images'. $cars->image;
-        // if(File::exists($destination)){
-        //     File::delete($destination);
-        // }
-        $file_extension = $request->image->getClientOriginalExtension();
-$file_name = time() . '.' . $file_extension;
-$path = 'images';
-$request->image->move($path, $file_name);
-return redirect ('cars');}
+            $fileName = $this->uploadFile($request->image, 'assets/images');
+            $data['image']= $fileName;
+        }
+
+        //return dd($data);
+        Car::where('id', $id)->update($data);
+        return 'Updated';
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -170,5 +184,13 @@ car::where('id', $id)->forceDelete(); //forcedelete
 
  car::where('id', $id)->restore();
  return redirect('cars');}
+
+
+ public function messages(){
+    return [
+        'cartitle.required'=>'Title is required',
+        'desciption.required'=> 'should be text',
+    ];
+}
 }
 

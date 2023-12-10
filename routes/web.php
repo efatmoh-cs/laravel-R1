@@ -6,6 +6,7 @@ use App\Http\Controllers\AddcarController;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\NewController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\PlaceController;
 use App\Models\Car;
 use App\Models\News;
 use App\Models\Product;
@@ -89,8 +90,13 @@ Route::get('/', function () {
 Route::get('showUpload', [ExampleController::class,
 'showUpload']);
 Route::post('upload',[ExampleController::class, 'upload'])->name('upload');
-
-
+Route::get('place', [ExampleController::class,
+'place']);
+Route::get('showplace', [PlaceController::class,
+'create']);
+Route::post('showplace', [PlaceController::class,
+'store'])->name('showplace');
+Route::get('showexploer', [PlaceController::class, 'index']);
 // Route::get('addcar', function () {
 //     return view('addcar');
 //  });
