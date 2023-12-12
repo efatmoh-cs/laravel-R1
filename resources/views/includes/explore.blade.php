@@ -13,7 +13,7 @@
 
 							<div class="single-explore-item">
 								<div class="single-explore-img">
-									<img src="{{ asset('public/assets/images'.$place->image)}} " alt="explore image">
+									<img src="{{ asset('assets/images/'.$place->image)}} " alt="explore image">
 									<div class="single-explore-img-info">
 										<button onclick="window.location.href='#'">best rated</button>
 										<div class="single-explore-image-icon-box">

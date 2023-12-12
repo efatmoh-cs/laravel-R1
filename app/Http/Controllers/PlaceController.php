@@ -16,6 +16,7 @@ class PlaceController extends Controller
     {
         $places = Place::get();
         return view('showexploer', compact('places'));
+
     }
 
     /**
@@ -23,7 +24,9 @@ class PlaceController extends Controller
      */
     public function create()
     {
-        return view('showplace');
+        $places = Place::get();
+        return view('placelist', compact('places'));
+       // return view('addplace');
 
     }
 
@@ -51,6 +54,7 @@ class PlaceController extends Controller
         place::create($data);
 
         return  redirect('showexploer');
+      // return 'done';
 
     }
 
@@ -81,14 +85,22 @@ class PlaceController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id): RedirectResponse
     {
-        //
+        Place::where('id', $id)->delete();
+        return redirect('showexploer');
     }
     public function messages(){
         return [
             'title.required'=>'Title is required',
             'description.required'=> 'should be text',
         ];
+    }
+    public function exploer(){
+        $places = Place::latest()
+        ->orderBY('created_at','desc')
+        ->take(6)
+        ->get();
+        return view('showexploer',compact('places'));
     }
 }

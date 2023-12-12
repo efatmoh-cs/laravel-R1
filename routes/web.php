@@ -92,11 +92,14 @@ Route::get('showUpload', [ExampleController::class,
 Route::post('upload',[ExampleController::class, 'upload'])->name('upload');
 Route::get('place', [ExampleController::class,
 'place']);
-Route::get('showplace', [PlaceController::class,
+Route::get('addplace', [PlaceController::class,
 'create']);
-Route::post('showplace', [PlaceController::class,
-'store'])->name('showplace');
+Route::post('addplace', [PlaceController::class,
+'store'])->name('addplace');
 Route::get('showexploer', [PlaceController::class, 'index']);
+Route::get('placelist', [PlaceController::class, 'create']);
+Route::get('deleteplace/{id}', [PlaceController::class, 'destroy']);
+
 // Route::get('addcar', function () {
 //     return view('addcar');
 //  });

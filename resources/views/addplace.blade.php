@@ -12,7 +12,7 @@
 
 <div class="container">
     <h2>Add Place</h2>
-    <form action="{{route('showplace')}}" method="post" enctype="multipart/form-data">
+    <form action="{{route('addplace')}}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
             <label for="title">Title:</label>

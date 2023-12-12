@@ -12,13 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('places', function (Blueprint $table) {
-            $table->id()->limit(6);
+            $table->id();
             $table->string('image');
             $table->string('title',100);
             $table->float('from');
             $table->float('from1');
             $table->text('description',200);
-
+            $table->softDeletes();
             $table->timestamps();
         });
     }
