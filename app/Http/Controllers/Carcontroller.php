@@ -5,6 +5,8 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Car;
+use App\Models\Category;
+use App\Models\Post;
 use App\Traits\Common;
 use Spatie\Backtrace\File;
 
@@ -12,7 +14,7 @@ class Carcontroller extends Controller
 
 {
  use Common;
-    private $columns=['cartitle','desciption','image'] ;
+    private $columns=['cartitle','desciption','image','category_id'] ;
 
     public function index()
     {
@@ -25,7 +27,8 @@ class Carcontroller extends Controller
      */
     public function create()
     {
-        return view('addcar');
+        $categories = Category::select('id','categoryName')->get();
+        return view('addcar',compact('categories'));
     }
 
     /**
@@ -55,7 +58,7 @@ class Carcontroller extends Controller
     /**
      * Display the specified resource.
      */
-    public function store(Request $request)//-->insert with validation
+    public function store(Request $request): RedirectResponse //-->insert with validation
     {
 
     //     $request->validate([
@@ -75,6 +78,7 @@ class Carcontroller extends Controller
         'cartitle'=>'required|string',
         'desciption'=>'required|string',
         'image' =>'required|mimes:png,jpg,jpeg|max:2048',
+        'category_id'=>'required|string',
     ], $messages);
 
     $fileName = $this->uploadFile($request->image, 'assets/images');
@@ -82,13 +86,16 @@ class Carcontroller extends Controller
     $data['published'] = isset($request['published']);
     Car::create($data);
 
-    return 'done';
+   // return 'done';
+   return redirect('cars');
     }
 
     public function show(string $id)
     {
-        $cars = car::findOrFail($id);
-      return view('show', compact('cars'));
+        $car = car::findOrFail($id);
+      return view('showDetails', compact('car'));
+
+
     }
 
     /**
@@ -96,7 +103,7 @@ class Carcontroller extends Controller
      */
     public function edit(string $id)
     {
-      //  return "the car is".$id;
+
       $cars = car::findOrFail($id);
       return view('updatecar', compact('cars'));
     }
@@ -141,10 +148,12 @@ class Carcontroller extends Controller
         // Car::where('id', $id)->update($data);
         $messages= $this->messages();
 
+
         $data = $request->validate([
             'cartitle'=>'required|string',
             'desciption'=>'required|string',
             'image' => 'sometimes|mimes:png,jpg,jpeg|max:2048',
+            'category_id'=>'required|string',
         ], $messages);
 
         $data['published'] = isset($request->published);
@@ -157,7 +166,10 @@ class Carcontroller extends Controller
 
         //return dd($data);
         Car::where('id', $id)->update($data);
+        $categories = Category::select('id','categoryName')->get();
+        //return view('updatecategory',compact('categories'));
         return 'Updated';
+
     }
 
 

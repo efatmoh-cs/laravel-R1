@@ -24,9 +24,9 @@ class PlaceController extends Controller
      */
     public function create()
     {
-        $places = Place::get();
-        return view('placelist', compact('places'));
-       // return view('addplace');
+        // $places = Place::get();
+        // return view('placelist', compact('places'));
+       return view('addplace');
 
     }
 

@@ -21,6 +21,7 @@ class CarFactory extends Factory
             'desciption' => fake()->text(),
             'image' => fake()->imageUrl(800,600),
             'published' => 1,
+            'category_id' => fake()->numberBetween($min = 1, $max = 2),
 
 
         ];

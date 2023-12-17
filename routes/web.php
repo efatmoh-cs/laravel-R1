@@ -7,6 +7,7 @@ use App\Http\Controllers\CarController;
 use App\Http\Controllers\NewController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PlaceController;
+use App\Http\Controllers\CategoryController;
 use App\Models\Car;
 use App\Models\News;
 use App\Models\Product;
@@ -97,7 +98,7 @@ Route::get('addplace', [PlaceController::class,
 Route::post('addplace', [PlaceController::class,
 'store'])->name('addplace');
 Route::get('showexploer', [PlaceController::class, 'index']);
-Route::get('placelist', [PlaceController::class, 'create']);
+Route::get('addplace', [PlaceController::class, 'create']);
 Route::get('deleteplace/{id}', [PlaceController::class, 'destroy']);
 
 // Route::get('addcar', function () {
@@ -136,9 +137,13 @@ Route::post('storecar', [CarController::class,
 Route::get('cars', [CarController::class, 'index']);
 Route::get('editcar/{id}', [CarController::class,
 'edit']);
+Route::get('editcat/{id}', [CategoryController::class,
+'edit']);
 Route::get('deletecar/{id}', [CarController::class,'destroy']);
 Route::get('showcar/{id}', [CarController::class,'show'])->name('showcar');
 Route::put('updatecar/{id}', [CarController::class,
+'update'])->name('updatecar');
+Route::put('updatecat/{id}', [CategoryController::class,
 'update'])->name('updatecar');
 Route::get('trashedcar', [CarController::class,'trashedcar']);
 Route::get('force-delete/{id}', [CarController::class,'delete']);
