@@ -8,6 +8,7 @@ use App\Http\Controllers\NewController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PlaceController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ContactController;
 use App\Models\Car;
 use App\Models\News;
 use App\Models\Product;
@@ -158,3 +159,11 @@ Route::post('addproduct', [ProductController::class,
 
 // Route::post('car', [AddcarController::class,
 // 'car']);
+
+Auth::routes(['verify'=>true]);
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('contact_us', [ContactController::class,
+'contact']);
+Route::post('contact', [ContactController::class,
+'sendEmail'])->name('contact.us');

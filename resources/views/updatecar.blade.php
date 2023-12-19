@@ -32,7 +32,7 @@
         @enderror
 
     </div>
-    @include('includes.updatecategory')
+    {{-- @include('includes.updatecategory') --}}
     <div class="checkbox">
       <label><input type="checkbox" name="published" @checked($cars->published)> Published</label>
     </div>
