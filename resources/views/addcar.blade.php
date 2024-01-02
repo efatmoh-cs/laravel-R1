@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{app()->getLocale()}}"
+data.textdirection="{{app()->getLocale()=="ar" ? 'rtl' : 'ltr'}}">
 <head>
-    <title>Add Car</title>
+
+    <title></title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -10,13 +12,18 @@
 </head>
 <body>
 
-<div class="container">
-    <h2>Add Car</h2>
+<div class="container"> <div>
+
+        <div>
+        <a href="{{ LaravelLocalization::getLocalizedURL('en') }}">English</a>
+        <a href="{{ LaravelLocalization::getLocalizedURL('ar') }}">Arabic</a>
+    </div>
+    <h2>{{ __('messages.contactF') }}</h2>
     <form action="{{route('storecar')}}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
-            <label for="title">Title:</label>
-            <input type="text" class="form-control" id="title" placeholder="Enter title" name="cartitle" value="{{ old('cartitle') }}">
+            <label for="title">{{ __('messages.contactt') }}</label>
+            <input type="text" class="form-control" id="title" placeholder="{{ __('messages.contact') }}" name="cartitle" value="{{ old('cartitle') }}">
             @error('cartitle')
             <div class="alert alert-warning">
                 {{ $message }}
@@ -24,27 +31,27 @@
             @enderror
         </div>
         <div class="form-group">
-            <label for="price">Price:</label>
-            <input type="number" class="form-control" id="price" placeholder="Enter Price" name="price" value="{{ old('price') }}">
+            <label for="price">{{ __('messages.contacts') }}</label>
+            <input type="number" class="form-control" id="price" placeholder="{{ __('messages.contactss') }}" name="price" value="{{ old('price') }}">
         </div>
         <div class="form-group">
-            <label for="description">Description:</label>
+            <label for="description">{{ __('messages.contactsss') }}</label>
             <textarea class="form-control" rows="5" id="description" name="desciption">{{ old('desciption') }}</textarea>
             @error('desciption')
                 {{ $message }}
             @enderror
         </div>
         <div class="form-group">
-            <label for="image">Image:</label>
+            <label for="image">{{ __('messages.contactssss') }}</label>
             <input type="file" class="form-control" id="image" name="image" value="{{ old('image') }}">
             @error('image')
                 {{ $message }}
             @enderror
         </div>
         <div class="form-group">
-            <label for="category">Select category:</label>
+            <label for="category">{{ __('messages.contactsssss') }}</label>
         <select name=" category_id" id="">
-            <option value="">Select category</option>
+            <option value="">{{ __('messages.form') }}</option>
 
             @foreach ($categories as $category )
 
@@ -56,9 +63,9 @@
     @enderror
         </div>
         <div class="checkbox">
-            <label><input type="checkbox" name="published"> Published</label>
+            <label><input type="checkbox" name="published">{{ __('messages.pup') }}</label>
         </div>
-        <button type="submit" class="btn btn-default">Add</button>
+        <button type="submit" class="btn btn-default">{{ __('messages.ADD') }}</button>
     </form>
 </div>
 

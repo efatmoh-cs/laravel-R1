@@ -9,6 +9,8 @@ use App\Models\Category;
 use App\Models\Post;
 use App\Traits\Common;
 use Spatie\Backtrace\File;
+use App\Mail\ContactMail;
+use Illuminate\Support\Facades\Mail;
 
 class Carcontroller extends Controller
 
@@ -29,6 +31,28 @@ class Carcontroller extends Controller
     {
         $categories = Category::select('id','categoryName')->get();
         return view('addcar',compact('categories'));
+    }
+
+    public function contact()
+    {
+
+        return view('contact');
+    }
+
+
+        public function receiveContact(Request $request){
+            $content = [
+                'name' => $request->name,
+                'email' => $request->email,
+                'subject' => $request->subject,
+                'message' => $request->message,
+                ];
+            Mail::to('khdrft88@gmail.com')->send(
+                new ContactMail($content),
+            );
+
+            return "mail sent!";
+
     }
 
     /**
@@ -105,7 +129,8 @@ class Carcontroller extends Controller
     {
 
       $cars = car::findOrFail($id);
-      return view('updatecar', compact('cars'));
+       $categories = Category::select('id','categoryName')->get();
+      return view('updatecar', compact('cars','categories'));
     }
 
     /**
@@ -166,8 +191,7 @@ class Carcontroller extends Controller
 
         //return dd($data);
         Car::where('id', $id)->update($data);
-        $categories = Category::select('id','categoryName')->get();
-        //return view('updatecategory',compact('categories'));
+
         return 'Updated';
 
     }

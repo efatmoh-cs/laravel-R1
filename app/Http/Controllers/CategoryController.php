@@ -52,8 +52,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $categories = Category::select('id','categoryName')->get();
-        return view('editcategorg',compact('categories'));
+       
     }
 
     /**

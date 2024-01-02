@@ -129,13 +129,10 @@ Route::get('restorenew/{id}', [NewController::class,'restore']);
 Route::get('shownew/{id}', [NewController::class,'show'])->name('shownew');
 Route::put('updatenew/{id}', [NewController::class,
 'update'])->name('updatenew');
-Route::get('addcar', [CarController::class,
-'create']);
 
 
-Route::post('storecar', [CarController::class,
-'store'])->name('storecar');
-Route::get('cars', [CarController::class, 'index']);
+
+Route::get('cars', [CarController::class, 'index']);//->middleware('verified')
 Route::get('editcar/{id}', [CarController::class,
 'edit']);
 Route::get('editcat/{id}', [CategoryController::class,
@@ -144,8 +141,7 @@ Route::get('deletecar/{id}', [CarController::class,'destroy']);
 Route::get('showcar/{id}', [CarController::class,'show'])->name('showcar');
 Route::put('updatecar/{id}', [CarController::class,
 'update'])->name('updatecar');
-Route::put('updatecat/{id}', [CategoryController::class,
-'update'])->name('updatecar');
+
 Route::get('trashedcar', [CarController::class,'trashedcar']);
 Route::get('force-delete/{id}', [CarController::class,'delete']);
 Route::get('restorecar/{id}', [CarController::class,'restore']);
@@ -167,3 +163,19 @@ Route::get('contact_us', [ContactController::class,
 'contact']);
 Route::post('contact', [ContactController::class,
 'sendEmail'])->name('contact.us');
+
+Route::group(
+    [
+    'prefix' => LaravelLocalization::setLocale(),
+    'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
+    ], function(){
+    // Your routes
+    Route::get('contact', [CarController::class,
+'contact']);
+Route::post('receiveContact', [CarController::class,
+'receiveContact'])->name('receiveContact');
+Route::get('addcar', [CarController::class,
+'create']);
+Route::post('storecar', [CarController::class,
+'store'])->name('storecar');
+    });
